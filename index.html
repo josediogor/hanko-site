@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hanko — aprenda idiomas só tirando fotos · espanhol, inglês, japonês e mandarim</title>
+<meta name="description" content="aponta a câmera pra qualquer objeto e em 4 segundos o hanko devolve a palavra, a pronúncia e 3 frases reais. espanhol, inglês, japonês e mandarim — grátis pra começar, no iPhone.">
+<meta name="apple-itunes-app" content="app-id=6774437058">
+<meta name="theme-color" content="#F6F1E4">
+
+<link rel="canonical" href="https://hankoapp.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hankoapp.com/">
+<meta property="og:title" content="hanko — aprenda idiomas só tirando fotos">
+<meta property="og:description" content="toda foto vira uma palavra — com pronúncia e 3 frases reais. espanhol, inglês, japonês e mandarim. grátis pra começar.">
+<meta property="og:image" content="https://hankoapp.com/assets/shot-aponte.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hanko",
+  "operatingSystem": "iOS",
+  "applicationCategory": "EducationalApplication",
+  "description": "Aprenda espanhol, inglês, japonês e mandarim fotografando objetos. Cada foto vira uma palavra com pronúncia e 3 frases reais.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+  "url": "https://apps.apple.com/br/app/hanko/id6774437058"
+}
+</script>
+
+<style>
+/* ====================================================================
+   HANKO · landing — design tokens espelhados do HKTokens.swift
+   ==================================================================== */
+:root{
+  --paper:    #F6F1E4;
+  --paper-alt:#EFE7D2;
+  --ink:      #0F0E0C;
+  --red:      #E13C2C;
+  --red-deep: #B82D1F;
+  --citron:   #F7D838;
+  --pistachio:#A3D67A;
+  --lavender: #C8B8FF;
+  --sky:      #9CC8F0;
+  --coral:    #FF8A6B;
+  --rose:     #F5C2D0;
+
+  --display: 'Archivo Black', sans-serif;
+  --body:    'Space Grotesk', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+  --serif:   'Instrument Serif', serif;
+
+  --shadow-4: 4px 4px 0 var(--ink);
+  --shadow-3: 3px 3px 0 var(--ink);
+  --shadow-2: 2px 2px 0 var(--ink);
+
+  --r-card: 20px;
+  --max-w: 1120px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+::selection{ background:var(--citron); color:var(--ink); }
+
+.wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+
+/* ---------- tipografia ---------- */
+.h-display{
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:lowercase;
+  letter-spacing:-0.015em;
+  line-height:1.04;
+}
+.accent{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:400;
+  letter-spacing:0;
+  line-height:1;
+}
+.eyebrow{
+  display:inline-block;
+  font-family:var(--mono);
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:var(--ink);
+  color:var(--paper);
+  padding:7px 14px;
+  border-radius:4px;
+  margin-bottom:22px;
+}
+.lead{
+  font-size:clamp(16px,1.7vw,19px);
+  color:rgba(15,14,12,.78);
+  max-width:34em;
+}
+.lead b{ font-weight:700; color:var(--ink); }
+
+/* ---------- chips & stickers ---------- */
+.sticker{
+  display:inline-block;
+  font-family:var(--display);
+  font-size:15px;
+  text-transform:lowercase;
+  background:#fff;
+  border:2.5px solid var(--ink);
+  border-radius:10px;
+  padding:8px 16px;
+  box-shadow:var(--shadow-3);
+}
+.sticker--pistachio{ background:var(--pistachio); }
+.sticker--citron{ background:var(--citron); }
+
+/* ---------- botões ---------- */
+.btn-store{
+  display:inline-flex; align-items:center; gap:11px;
+  background:var(--ink); color:var(--paper);
+  text-decoration:none;
+  border-radius:14px;
+  padding:12px 22px 12px 18px;
+  box-shadow:var(--shadow-4);
+  transition:transform .18s ease, box-shadow .18s ease;
+  border:2.5px solid var(--ink);
+}
+.btn-store:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink); }
+.btn-store:active{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+.btn-store svg{ width:26px; height:26px; flex:none; }
+.btn-store .lines{ display:flex; flex-direction:column; line-height:1.12; text-align:left; }
+.btn-store .small{ font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; opacity:.75; }
+.btn-store .big{ font-family:var(--display); font-size:17px; letter-spacing:.005em; }
+
+.btn-store--soon{
+  background:transparent; color:var(--ink);
+  border:2.5px dashed rgba(15,14,12,.45);
+  box-shadow:none; cursor:default; position:relative;
+}
+.btn-store--soon:hover,.btn-store--soon:active{ transform:none; box-shadow:none; }
+.btn-store--soon .small{ opacity:.6; }
+.btn-store--soon svg{ opacity:.65; }
+.btn-store--soon .soon-tag{
+  position:absolute; top:-12px; right:-10px;
+  font-family:var(--display); font-size:10.5px;
+  background:var(--citron); border:2px solid var(--ink);
+  border-radius:7px; padding:2px 8px;
+  transform:rotate(6deg);
+  box-shadow:var(--shadow-2);
+}
+
+.cta-note{
+  font-family:var(--mono); font-size:11.5px;
+  letter-spacing:.04em; color:rgba(15,14,12,.62);
+  margin-top:14px;
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:60;
+  background:rgba(246,241,228,.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.nav-inner{
+  max-width:var(--max-w); margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px;
+}
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand img{ width:36px; height:36px; border-radius:9px; box-shadow:var(--shadow-2); transform:rotate(-3deg); }
+.brand span{ font-family:var(--display); font-size:21px; }
+.nav-links{ display:flex; gap:26px; align-items:center; }
+.nav-links a{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  text-decoration:none; color:rgba(15,14,12,.7);
+}
+.nav-links a:hover{ color:var(--ink); }
+.nav-cta{
+  font-family:var(--display); font-size:14px; text-transform:lowercase;
+  background:var(--red); color:var(--paper);
+  text-decoration:none; padding:9px 18px; border-radius:999px;
+  box-shadow:var(--shadow-3);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.nav-cta:hover{ transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink); }
+
+/* ---------- hero ---------- */
+.hero{ position:relative; padding:64px 0 110px; overflow:hidden; }
+.hero::before{
+  content:"HANKO";
+  position:absolute; top:6%; left:-4%;
+  font-family:var(--display); font-size:clamp(160px,26vw,330px);
+  color:var(--ink); opacity:.045;
+  transform:rotate(-7deg);
+  pointer-events:none; white-space:nowrap;
+}
+.hero-grid{
+  display:grid; grid-template-columns:1.05fr .95fr;
+  gap:48px; align-items:center; position:relative;
+}
+.hero h1{ font-size:clamp(40px,5.6vw,68px); margin-bottom:24px; }
+.hero h1 .accent{ color:var(--red); font-size:1.12em; }
+.hero .lead{ margin-bottom:34px; }
+.store-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+
+.spark{ position:absolute; font-size:26px; color:var(--ink); pointer-events:none; }
+.spark--1{ top:-6px; right:12%; animation:twinkle 3.2s ease-in-out infinite; }
+.spark--2{ bottom:18%; left:-34px; font-size:18px; animation:twinkle 2.6s .8s ease-in-out infinite; }
+@keyframes twinkle{ 0%,100%{ opacity:.25; transform:scale(.85) rotate(0deg);} 50%{ opacity:1; transform:scale(1.1) rotate(18deg);} }
+
+/* hand-drawn arrow */
+.arrow-doodle{ position:absolute; left:-104px; top:30px; width:84px; transform:rotate(24deg); pointer-events:none; z-index:9; }
+.arrow-doodle path{ stroke:var(--ink); stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---------- phone frame ---------- */
+.phone{
+  width:300px; aspect-ratio:300/610;
+  background:var(--ink); border-radius:46px;
+  padding:11px; position:relative;
+  box-shadow:8px 8px 0 rgba(15,14,12,.9);
+}
+.phone .screen{
+  width:100%; height:100%; border-radius:36px;
+  overflow:hidden; position:relative; background:#191714;
+}
+.phone .island{
+  position:absolute; top:21px; left:50%; transform:translateX(-50%);
+  width:84px; height:24px; background:var(--ink); border-radius:999px; z-index:9;
+}
+.phone--img .screen img{ width:100%; height:100%; object-fit:cover; }
+
+/* hero demo — câmera → café → polaroid (loop 8s) */
+.demo-stage{ position:relative; margin:0 auto; animation:floaty 5.4s ease-in-out infinite; }
+@keyframes floaty{ 0%,100%{ transform:translateY(0) rotate(-1.2deg);} 50%{ transform:translateY(-12px) rotate(-1.2deg);} }
+
+.cam-top{
+  position:absolute; top:54px; left:0; right:0;
+  display:flex; justify-content:center; z-index:5;
+}
+.cam-lang{
+  font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:.16em;
+  color:var(--paper); background:rgba(246,241,228,.16);
+  padding:5px 12px; border-radius:999px;
+}
+.bracket{ position:absolute; width:34px; height:34px; z-index:4; opacity:0;
+  border:0 solid var(--paper); animation:brkIn 8s infinite; }
+.brk-tl{ top:104px; left:30px;  border-left-width:3.5px; border-top-width:3.5px;  border-top-left-radius:10px; }
+.brk-tr{ top:104px; right:30px; border-right-width:3.5px; border-top-width:3.5px; border-top-right-radius:10px; }
+.brk-bl{ bottom:170px; left:30px;  border-left-width:3.5px; border-bottom-width:3.5px; border-bottom-left-radius:10px; }
+.brk-br{ bottom:170px; right:30px; border-right-width:3.5px; border-bottom-width:3.5px; border-bottom-right-radius:10px; }
+@keyframes brkIn{
+  0%{ opacity:0; transform:scale(1.25);}
+  5%,80%{ opacity:.95; transform:scale(1);}
+  88%,100%{ opacity:0; }
+}
+.demo-subject{
+  position:absolute; top:37%; left:50%; z-index:3;
+  width:128px; height:auto; transform:translate(-50%,-50%) rotate(-4deg) scale(.3);
+  opacity:0; animation:subjIn 8s infinite;
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(4px 5px 0 rgba(0,0,0,.28));
+}
+@keyframes subjIn{
+  0%,8%{ opacity:0; transform:translate(-50%,-50%) rotate(-9deg) scale(.3);}
+  14%,80%{ opacity:1; transform:translate(-50%,-50%) rotate(-4deg) scale(1);}
+  88%,100%{ opacity:0; }
+}
+.demo-flash{
+  position:absolute; inset:0; background:var(--paper); z-index:6;
+  opacity:0; animation:flash 8s infinite; pointer-events:none;
+}
+@keyframes flash{ 0%,29%{opacity:0;} 31%{opacity:.9;} 34%,100%{opacity:0;} }
+.demo-shutter{
+  position:absolute; bottom:54px; left:50%; transform:translateX(-50%);
+  width:78px; height:78px; border-radius:50%;
+  background:var(--red); z-index:5;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:12.5px; color:var(--paper); letter-spacing:.06em;
+  box-shadow:0 0 0 5px rgba(246,241,228,.28);
+  animation:shutterPress 8s infinite;
+}
+@keyframes shutterPress{ 0%,27%{ transform:translateX(-50%) scale(1);} 29.5%{ transform:translateX(-50%) scale(.86);} 32%,100%{ transform:translateX(-50%) scale(1);} }
+.demo-polaroid{
+  position:absolute; left:50%; bottom:34px; z-index:7;
+  transform:translate(-50%,130%) rotate(5deg);
+  animation:polUp 8s infinite;
+}
+@keyframes polUp{
+  0%,32%{ transform:translate(-50%,130%) rotate(7deg); }
+  40%,82%{ transform:translate(-50%,0) rotate(-2deg); }
+  90%,100%{ transform:translate(-50%,130%) rotate(7deg); }
+}
+.demo-sparkle{ position:absolute; z-index:8; font-size:20px; color:var(--citron); opacity:0; animation:demoSpk 8s infinite; }
+.demo-spk1{ top:24%; left:16%; }
+.demo-spk2{ top:18%; right:16%; animation-delay:.18s; }
+@keyframes demoSpk{ 0%,36%{ opacity:0; transform:scale(.4);} 42%,60%{ opacity:1; transform:scale(1.15);} 70%,100%{ opacity:0; } }
+
+.han-peek{
+  position:absolute; bottom:-26px; right:-82px; width:148px; z-index:8;
+  transform:rotate(-6deg);
+  animation:hanFloat 5.2s ease-in-out infinite;
+  filter:drop-shadow(3px 4px 0 rgba(15,14,12,.18));
+}
+@keyframes hanFloat{ 0%,100%{ transform:rotate(-7deg) translateY(0);} 50%{ transform:rotate(-5deg) translateY(-9px);} }
+
+.hero-sticker-1{ position:absolute; top:-6px; left:-44px; transform:rotate(-7deg); z-index:9; }
+.hero-sticker-2{ position:absolute; bottom:210px; left:-118px; transform:rotate(4deg); z-index:9; }
+
+/* ---------- polaroid (espelho fiel do HKPolaroid.swift) ---------- */
+.polaroid{
+  --pol-bg:var(--citron);
+  --pol-w:230px;
+  width:var(--pol-w); aspect-ratio:5/6;
+  background:var(--pol-bg); border-radius:var(--r-card);
+  box-shadow:var(--shadow-4);
+  position:relative; flex:none;
+}
+.polaroid .p-date{
+  position:absolute; top:11px; left:13px;
+  font-family:var(--display); font-size:11px;
+  text-transform:uppercase; letter-spacing:.05em;
+  color:rgba(15,14,12,.75);
+}
+.polaroid .p-place{
+  position:absolute; top:9px; right:10px;
+  font-family:var(--mono); font-size:9.5px; font-weight:600;
+  color:rgba(15,14,12,.8);
+  background:rgba(255,255,255,.55);
+  padding:3px 8px; border-radius:999px;
+}
+.polaroid .p-subject{
+  position:absolute; top:40px; bottom:64px; left:14%; right:14%;
+  transform:rotate(-4deg);
+  display:flex; justify-content:center; align-items:center;
+}
+.polaroid .p-subject img{
+  max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(3px 3px 0 rgba(0,0,0,.22));
+}
+.polaroid .p-subject.is-emoji{ font-size:74px; filter:none; }
+.polaroid .p-caption{
+  position:absolute; bottom:14px; left:50%;
+  transform:translateX(-50%) rotate(-1.5deg);
+  background:#fff; border-radius:999px;
+  padding:8px 14px;
+  display:flex; align-items:center; gap:10px;
+  box-shadow:0 2px 0 rgba(15,14,12,.12);
+  white-space:nowrap;
+}
+.polaroid .p-word{ font-family:var(--display); font-size:19px; line-height:1.05; }
+.polaroid .p-trans{ font-family:var(--body); font-weight:500; font-size:12px; color:rgba(15,14,12,.65); }
+.polaroid .p-audio{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:var(--citron);
+  display:flex; align-items:center; justify-content:center;
+}
+.polaroid .p-audio svg{ width:10px; height:10px; }
+.polaroid--sm{ --pol-w:170px; }
+.polaroid--sm .p-word{ font-size:15px; }
+.polaroid--sm .p-caption{ padding:6px 12px; }
+
+/* ---------- marquee ---------- */
+.marquee{
+  background:var(--ink); color:var(--paper);
+  padding:16px 0; overflow:hidden;
+  transform:rotate(-1.3deg) scale(1.02);
+  position:relative; z-index:5;
+}
+.marquee-track{
+  display:flex; gap:0; width:max-content;
+  animation:marquee 36s linear infinite;
+}
+.marquee span{
+  font-family:var(--display); font-size:17px;
+  text-transform:uppercase; letter-spacing:.05em;
+  white-space:nowrap; padding-right:18px;
+}
+.marquee .mq-sep{ color:var(--citron); }
+.marquee .mq-trans{ color:rgba(246,241,228,.55); }
+@keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+/* ---------- seções ---------- */
+.section{ padding:104px 0; position:relative; overflow:hidden; }
+.section--red{ background:var(--red); color:var(--paper); }
+.section--citron{ background:var(--citron); }
+.section--pistachio{ background:var(--pistachio); }
+.section--sky{ background:var(--sky); }
+.section--coral{ background:var(--coral); }
+.section--alt{ background:var(--paper-alt); }
+.section--ink{ background:var(--ink); color:var(--paper); }
+
+.section h2{ font-size:clamp(30px,4vw,48px); margin-bottom:20px; }
+.section h2 .accent{ font-size:1.12em; }
+
+/* como funciona */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:34px; margin-top:64px; }
+.step{ text-align:center; }
+.step .phone{ width:218px; margin:0 auto 26px; border-radius:34px; padding:8px; box-shadow:6px 6px 0 var(--ink); }
+.step .phone .screen{ border-radius:27px; }
+.step .phone .island{ width:60px; height:17px; top:14px; }
+.step:nth-child(1) .phone{ transform:rotate(-2.5deg); }
+.step:nth-child(2) .phone{ transform:rotate(1.8deg); }
+.step:nth-child(3) .phone{ transform:rotate(-1.6deg); }
+.step-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px; border-radius:50%;
+  background:var(--red); color:var(--paper);
+  font-family:var(--display); font-size:18px;
+  box-shadow:var(--shadow-2);
+  margin-bottom:14px; transform:rotate(-4deg);
+}
+.step h3{ font-family:var(--display); font-size:21px; text-transform:lowercase; margin-bottom:10px; }
+.step h3 .mono-cap{ font-family:var(--mono); font-weight:600; font-size:.78em; letter-spacing:.08em; background:var(--citron); padding:2px 7px; border-radius:5px; }
+.step p{ font-size:15px; color:rgba(15,14,12,.72); max-width:26em; margin:0 auto; }
+
+/* feature split */
+.feat{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.feat--flip{ direction:rtl; }
+.feat--flip > *{ direction:ltr; }
+.feat .phone{ width:264px; margin:0 auto; }
+.feat-media{ position:relative; }
+
+/* bolhas de frase (CapturedWordView) */
+.bubbles{ display:flex; flex-direction:column; gap:14px; margin-top:30px; max-width:420px; }
+.bubble{
+  border-radius:18px; padding:14px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  box-shadow:0 2px 0 rgba(15,14,12,.14);
+}
+.bubble .b-l .b-frase{ font-family:var(--display); font-size:16px; }
+.bubble .b-l .b-pt{ font-family:var(--body); font-weight:500; font-size:12.5px; color:rgba(15,14,12,.62); margin-top:2px; }
+.bubble .b-play{
+  width:30px; height:30px; border-radius:50%; flex:none;
+  background:var(--ink); display:flex; align-items:center; justify-content:center;
+}
+.bubble .b-play svg{ width:10px; height:10px; }
+.bubble--lavender{ background:var(--lavender); }
+.bubble--sky{ background:var(--sky); }
+.bubble--rose{ background:var(--rose); }
+.bubble:nth-child(1){ transform:rotate(-1deg); }
+.bubble:nth-child(2){ transform:rotate(.8deg); }
+.bubble:nth-child(3){ transform:rotate(-.6deg); }
+
+.label-mono{
+  font-family:var(--mono); font-weight:600; font-size:10.5px;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(15,14,12,.55); margin-top:26px; margin-bottom:-18px;
+}
+
+/* câmera mock estática (passo 1) */
+.cam-mock{ position:absolute; inset:0; background:#191714; }
+.cam-mock .cm-lang{
+  position:absolute; top:9%; left:50%; transform:translateX(-50%);
+  font-family:var(--mono); font-weight:600; font-size:8.5px; letter-spacing:.16em;
+  color:var(--paper); background:rgba(246,241,228,.16);
+  padding:4px 10px; border-radius:999px;
+}
+.cam-mock .cm-brk{ position:absolute; width:24px; height:24px; border:0 solid var(--paper); opacity:.95; }
+.cam-mock .cm-tl{ top:17%; left:11%;  border-left-width:3px; border-top-width:3px; border-top-left-radius:8px; }
+.cam-mock .cm-tr{ top:17%; right:11%; border-right-width:3px; border-top-width:3px; border-top-right-radius:8px; }
+.cam-mock .cm-bl{ bottom:31%; left:11%;  border-left-width:3px; border-bottom-width:3px; border-bottom-left-radius:8px; }
+.cam-mock .cm-br{ bottom:31%; right:11%; border-right-width:3px; border-bottom-width:3px; border-bottom-right-radius:8px; }
+.cam-mock img{
+  position:absolute; top:42%; left:50%; width:46%; height:auto;
+  transform:translate(-50%,-50%) rotate(-4deg);
+  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(3px 4px 0 rgba(0,0,0,.28));
+}
+.cam-mock .cm-shutter{
+  position:absolute; bottom:6%; left:50%; transform:translateX(-50%);
+  width:54px; height:54px; border-radius:50%;
+  background:var(--red);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:9px; color:var(--paper); letter-spacing:.06em;
+  box-shadow:0 0 0 4px rgba(246,241,228,.28);
+}
+
+/* tela de selo em CSS (seção frases) */
+.selo-screen{
+  position:absolute; inset:0; background:var(--paper);
+  padding:38px 16px 14px;
+  display:flex; flex-direction:column; align-items:center; gap:9px;
+}
+.selo-screen .ss-top{
+  font-family:var(--mono); font-weight:600; font-size:8.5px; letter-spacing:.18em;
+  color:rgba(15,14,12,.55); text-transform:uppercase;
+}
+.selo-screen .polaroid{ box-shadow:3px 3px 0 var(--ink); }
+.selo-screen .ss-pron{
+  width:100%; background:var(--ink); border-radius:12px;
+  padding:7px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.selo-screen .ss-pron .ipa{ font-family:var(--mono); font-weight:600; font-size:10.5px; color:var(--paper); }
+.selo-screen .ss-pron .ouvir{
+  font-family:var(--display); font-size:8.5px; letter-spacing:.04em;
+  background:var(--citron); border-radius:999px; padding:4px 10px; flex:none;
+}
+.selo-screen .ss-label{
+  align-self:flex-start;
+  font-family:var(--mono); font-weight:600; font-size:7.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:rgba(15,14,12,.5);
+  margin-top:2px; margin-bottom:-3px;
+}
+.selo-screen .ss-bubble{ width:100%; border-radius:10px; padding:6px 10px; }
+.selo-screen .ss-bubble .f{ font-family:var(--display); font-size:10px; }
+.selo-screen .ss-bubble .t{ font-weight:500; font-size:8.5px; color:rgba(15,14,12,.6); }
+.claim-3x{
+  display:inline-block; margin-top:26px;
+  font-family:var(--display); font-size:17px;
+  background:var(--paper); border-radius:12px;
+  padding:12px 18px; box-shadow:var(--shadow-3);
+  transform:rotate(-1.4deg);
+}
+.claim-3x .accent{ color:var(--red); font-size:1.2em; }
+
+/* flashcard flip */
+.flip-zone{ perspective:1100px; max-width:330px; margin:0 auto; }
+.flipcard{
+  position:relative; width:100%; aspect-ratio:5/6;
+  transform-style:preserve-3d; cursor:pointer;
+  transition:transform .65s cubic-bezier(.4,.1,.2,1);
+}
+.flipcard.flipped{ transform:rotateY(180deg); }
+.flip-face{
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:var(--r-card); box-shadow:var(--shadow-4);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px; padding:30px;
+}
+.flip-front{ background:var(--paper); }
+.flip-back{ background:var(--rose); transform:rotateY(180deg); }
+.flip-word{ font-family:var(--display); font-size:38px; text-transform:lowercase; }
+.flip-ipa{ font-family:var(--mono); font-weight:600; font-size:13px; color:rgba(15,14,12,.6); }
+.flip-hint{
+  font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:rgba(15,14,12,.45);
+  position:absolute; bottom:22px;
+}
+.flip-frase{
+  background:#fff; border-radius:14px; padding:10px 16px;
+  font-weight:500; font-size:14px; text-align:center;
+  box-shadow:0 2px 0 rgba(15,14,12,.12);
+}
+.flip-frase small{ display:block; font-size:11.5px; color:rgba(15,14,12,.55); }
+.graders{ display:flex; gap:10px; justify-content:center; margin-top:30px; }
+.grade{
+  font-family:var(--display); font-size:14px; text-transform:lowercase;
+  border-radius:12px; padding:10px 18px;
+  box-shadow:var(--shadow-2);
+}
+.grade--hard{ background:var(--coral); transform:rotate(-2deg); }
+.grade--ok{ background:var(--citron); transform:rotate(1.2deg); }
+.grade--easy{ background:var(--pistachio); transform:rotate(-1.4deg); }
+
+/* coleção — mural */
+.wall{ position:relative; min-height:560px; }
+.wall .polaroid{ position:absolute; --pol-w:215px; }
+.wall .pol-a{ --pol-bg:var(--citron); transform:rotate(-5deg); left:0; top:0; z-index:2; }
+.wall .pol-b{ --pol-bg:var(--sky); transform:rotate(3.5deg); right:2%; top:48px; z-index:3; }
+.wall .pol-c{ --pol-bg:var(--lavender); transform:rotate(-2deg); left:12%; top:296px; z-index:4; }
+.streak-chip{
+  position:absolute; top:-16px; right:0; z-index:6;
+  transform:rotate(4deg);
+}
+
+/* idiomas */
+.langs{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:56px; }
+.lang-card{
+  border-radius:var(--r-card); padding:28px 22px 24px;
+  box-shadow:var(--shadow-3);
+  transition:transform .2s ease;
+}
+.lang-card:hover{ transform:translateY(-6px) rotate(-1deg); }
+.lang-card .greet{ font-family:var(--display); font-size:30px; margin-bottom:12px; }
+.lang-card h3{ font-family:var(--display); font-size:17px; text-transform:lowercase; }
+.lang-card p{ font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(15,14,12,.55); margin-top:6px; }
+.lang-es{ background:var(--coral); transform:rotate(-1.4deg); }
+.lang-en{ background:var(--sky); transform:rotate(1deg); }
+.lang-ja{ background:var(--citron); transform:rotate(-.8deg); }
+.lang-zh{ background:var(--rose); transform:rotate(1.4deg); }
+.langs-note{ text-align:center; margin-top:36px; }
+
+/* privacidade */
+.priv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:54px; }
+.priv-card{
+  background:rgba(246,241,228,.06);
+  border:1.5px dashed rgba(246,241,228,.3);
+  border-radius:var(--r-card); padding:26px;
+}
+.priv-card .pi{ font-size:26px; margin-bottom:14px; }
+.priv-card h3{ font-family:var(--display); font-size:16px; text-transform:lowercase; margin-bottom:8px; }
+.priv-card p{ font-size:14px; color:rgba(246,241,228,.72); }
+
+/* pricing */
+.free-banner{
+  background:#fff; border-radius:var(--r-card);
+  box-shadow:var(--shadow-4); padding:30px 34px;
+  margin-top:54px; transform:rotate(-.5deg);
+  display:flex; gap:26px; align-items:center; flex-wrap:wrap;
+}
+.free-banner .fb-title{ font-family:var(--display); font-size:21px; flex:none; }
+.free-banner ul{ display:flex; flex-wrap:wrap; gap:10px 22px; list-style:none; }
+.free-banner li{ font-weight:500; font-size:14.5px; display:flex; gap:8px; align-items:center; }
+.free-banner li::before{ content:"✓"; font-family:var(--display); color:var(--red); }
+
+.plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:34px; align-items:stretch; }
+.plan{
+  background:#fff; border-radius:var(--r-card);
+  box-shadow:var(--shadow-3); padding:30px 26px;
+  position:relative; display:flex; flex-direction:column; gap:6px;
+}
+.plan .p-name{ font-family:var(--mono); font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(15,14,12,.55); }
+.plan .p-price{ font-family:var(--display); font-size:33px; margin:8px 0 2px; }
+.plan .p-price small{ font-size:15px; }
+.plan .p-note{ font-size:13.5px; color:rgba(15,14,12,.65); }
+.plan--featured{
+  background:var(--citron); transform:rotate(-1.4deg) scale(1.04);
+  box-shadow:var(--shadow-4); z-index:2;
+}
+.plan--featured .p-note b{ color:var(--ink); }
+.plan-badge{
+  position:absolute; top:-15px; right:18px;
+  font-family:var(--display); font-size:11.5px;
+  background:var(--ink); color:var(--paper);
+  padding:5px 12px; border-radius:8px; transform:rotate(3deg);
+  box-shadow:var(--shadow-2);
+}
+.plan--life .p-price::after{ content:" ∞"; color:var(--red); }
+.perks{
+  display:flex; flex-wrap:wrap; gap:10px 26px; justify-content:center;
+  margin-top:40px;
+}
+.perks span{ font-family:var(--mono); font-weight:600; font-size:11.5px; letter-spacing:.06em; color:rgba(15,14,12,.7); }
+.pricing-cta{ text-align:center; margin-top:48px; }
+.pricing-fine{
+  text-align:center; font-family:var(--mono); font-size:10.5px;
+  letter-spacing:.05em; color:rgba(15,14,12,.5); margin-top:22px;
+}
+
+/* FAQ */
+.faq{ max-width:720px; margin:54px auto 0; display:flex; flex-direction:column; gap:14px; }
+.faq details{
+  background:#fff; border-radius:16px;
+  box-shadow:var(--shadow-2);
+  padding:0 24px;
+}
+.faq summary{
+  cursor:pointer; list-style:none;
+  font-family:var(--display); font-size:16px; text-transform:lowercase;
+  padding:20px 0; position:relative; padding-right:42px;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{
+  content:"+"; position:absolute; right:4px; top:50%;
+  transform:translateY(-50%);
+  font-family:var(--display); font-size:21px; color:var(--red);
+  transition:transform .25s ease;
+}
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq details p{ padding:0 0 22px; font-size:15px; color:rgba(15,14,12,.75); max-width:56ch; }
+
+/* CTA final */
+.final{ text-align:center; position:relative; }
+.final::before{
+  content:"印"; position:absolute; top:-30px; right:-40px;
+  font-size:340px; line-height:1; opacity:.07; color:var(--paper);
+  transform:rotate(-8deg); pointer-events:none;
+  font-family:serif;
+}
+.final .han-big{ width:148px; margin:0 auto 10px; animation:hanFloat 5.2s ease-in-out infinite; }
+.final h2{ color:var(--paper); }
+.final h2 .accent{ color:var(--citron); }
+.final .lead{ color:rgba(246,241,228,.85); margin:0 auto 40px; }
+.final .btn-store{ background:var(--paper); color:var(--ink); border-color:var(--ink); }
+.final .btn-store--soon{ background:transparent; color:var(--paper); border-color:rgba(246,241,228,.5); }
+.final .store-row{ justify-content:center; }
+.final .cta-note{ color:rgba(246,241,228,.7); }
+.qr-card{
+  display:inline-flex; flex-direction:column; align-items:center; gap:12px;
+  background:var(--paper); border-radius:var(--r-card);
+  padding:22px 26px 18px; margin-top:52px;
+  box-shadow:var(--shadow-4); transform:rotate(-1.6deg);
+}
+.qr-card img{ width:128px; height:128px; }
+.qr-card span{ font-family:var(--mono); font-weight:600; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(15,14,12,.65); max-width:200px; }
+
+/* founder */
+.founder{
+  max-width:620px; margin:84px auto 0;
+  background:rgba(246,241,228,.1);
+  border:1.5px dashed rgba(246,241,228,.35);
+  border-radius:var(--r-card); padding:30px 34px;
+  text-align:left; display:flex; gap:22px; align-items:flex-start;
+}
+.founder img{ width:64px; flex:none; transform:rotate(-6deg); }
+.founder p{ font-size:14.5px; color:rgba(246,241,228,.85); }
+.founder .sig{ font-family:var(--serif); font-style:italic; font-size:19px; margin-top:10px; color:var(--paper); }
+
+/* footer */
+footer{
+  background:var(--ink); color:rgba(246,241,228,.7);
+  padding:34px 0 110px;
+}
+.foot-inner{
+  max-width:var(--max-w); margin:0 auto; padding:0 24px;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:22px; flex-wrap:wrap;
+  border-top:1px solid rgba(246,241,228,.14);
+  padding-top:34px;
+}
+.foot-brand{ display:flex; align-items:center; gap:10px; }
+.foot-brand img{ width:30px; border-radius:7px; transform:rotate(-3deg); }
+.foot-brand span{ font-family:var(--display); font-size:17px; color:var(--paper); }
+.foot-links{ display:flex; gap:22px; flex-wrap:wrap; }
+.foot-links a{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(246,241,228,.6); text-decoration:none;
+}
+.foot-links a:hover{ color:var(--paper); }
+.foot-copy{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; }
+
+/* sticky mobile CTA */
+.sticky-cta{
+  position:fixed; left:16px; right:16px; bottom:16px; z-index:80;
+  display:none; justify-content:center;
+  transform:translateY(120%); transition:transform .35s cubic-bezier(.34,1.3,.64,1);
+}
+.sticky-cta.show{ transform:translateY(0); }
+.sticky-cta a{
+  width:100%; max-width:430px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  background:var(--red); color:var(--paper); text-decoration:none;
+  font-family:var(--display); font-size:16px; text-transform:lowercase;
+  padding:16px 22px; border-radius:999px;
+  box-shadow:var(--shadow-4);
+}
+
+/* reveal on scroll */
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,.9,.3,1); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal-d1{ transition-delay:.08s; } .reveal-d2{ transition-delay:.16s; } .reveal-d3{ transition-delay:.24s; }
+
+/* ---------- responsivo ---------- */
+@media (max-width: 960px){
+  .hero-grid{ grid-template-columns:1fr; gap:70px; text-align:center; }
+  .hero .lead{ margin-left:auto; margin-right:auto; }
+  .store-row{ justify-content:center; }
+  .demo-stage{ width:300px; margin:0 auto; }
+  .hero-sticker-1{ left:-20px; }
+  .hero-sticker-2{ left:auto; right:-16px; bottom:40px; }
+  .arrow-doodle{ display:none; }
+  .steps{ grid-template-columns:1fr; gap:58px; }
+  .feat{ grid-template-columns:1fr; gap:54px; }
+  .feat--flip{ direction:ltr; }
+  .langs{ grid-template-columns:repeat(2,1fr); }
+  .priv-grid{ grid-template-columns:1fr; }
+  .plans{ grid-template-columns:1fr; }
+  .plan--featured{ transform:rotate(-1deg) scale(1); }
+  .nav-links a:not(.nav-cta){ display:none; }
+  .sticky-cta{ display:flex; }
+  .wall{ min-height:560px; }
+  .wall .polaroid{ --pol-w:185px; }
+  .wall .polaroid .p-word{ font-size:15px; }
+  .wall .polaroid .p-caption{ padding:6px 12px; }
+  .wall .pol-a{ left:0; top:0; }
+  .wall .pol-b{ right:0; top:118px; }
+  .wall .pol-c{ left:6%; top:308px; }
+  .han-peek{ right:-30px; }
+  .founder{ flex-direction:column; }
+  .section{ padding:84px 0; }
+  .qr-card{ display:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .marquee-track{ animation:none; }
+  .reveal{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== NAV ====================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      <img src="assets/icon.png" alt="ícone do Hanko — carimbo vermelho com o kanji 印" width="36" height="36">
+      <span>hanko</span>
+    </a>
+    <div class="nav-links">
+      <a href="#como-funciona">como funciona</a>
+      <a href="#preco">preço</a>
+      <a href="#faq">faq</a>
+      <a class="nav-cta" href="https://apps.apple.com/br/app/hanko/id6774437058" data-goatcounter-click="cta-nav">baixar grátis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ====================== HERO ====================== -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">espanhol · inglês · japonês · mandarim</span>
+      <h1 class="h-display">aprenda uma nova língua <span class="accent">só tirando fotos</span></h1>
+      <p class="lead">aponta a câmera pra qualquer objeto. em <b>4 segundos</b> o hanko devolve a palavra, a pronúncia e <b>3 frases reais</b> — e ela vira um selo na sua coleção.</p>
+      <div class="store-row">
+        <a class="btn-store" href="https://apps.apple.com/br/app/hanko/id6774437058" data-goatcounter-click="cta-hero" aria-label="Baixar o Hanko na App Store">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span class="lines"><span class="small">baixar na</span><span class="big">App Store</span></span>
+        </a>
+        <span class="btn-store btn-store--soon" aria-label="Em breve no Google Play">
+          <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          <span class="lines"><span class="small">em breve no</span><span class="big">Google Play</span></span>
+          <span class="soon-tag">em breve!</span>
+        </span>
+      </div>
+      <p class="cta-note">grátis pra começar · 3 capturas por dia · sem cartão</p>
+      <span class="spark spark--2" aria-hidden="true">✦</span>
+    </div>
+
+    <div class="demo-stage">
+      <span class="spark spark--1" aria-hidden="true">✦</span>
+      <span class="sticker sticker--pistachio hero-sticker-1">novo selo!</span>
+      <span class="sticker hero-sticker-2">grátis pra começar</span>
+      <div class="phone">
+        <div class="island" aria-hidden="true"></div>
+        <div class="screen" role="img" aria-label="demonstração do app: a câmera mira numa xícara de café e o polaroid com a palavra “el café” sobe na tela">
+          <div class="cam-top"><span class="cam-lang">ESPANHOL</span></div>
+          <span class="bracket brk-tl" aria-hidden="true"></span>
+          <span class="bracket brk-tr" aria-hidden="true"></span>
+          <span class="bracket brk-bl" aria-hidden="true"></span>
+          <span class="bracket brk-br" aria-hidden="true"></span>
+          <img class="demo-subject" src="assets/coffee.png" alt="" width="360" height="279" fetchpriority="high">
+          <div class="demo-flash" aria-hidden="true"></div>
+          <div class="demo-shutter" aria-hidden="true">SELAR</div>
+          <span class="demo-sparkle demo-spk1" aria-hidden="true">✦</span>
+          <span class="demo-sparkle demo-spk2" aria-hidden="true">✦</span>
+          <div class="demo-polaroid">
+            <div class="polaroid polaroid--sm" style="--pol-bg:var(--citron)">
+              <span class="p-date">12 jun</span>
+              <span class="p-place">📍 são paulo</span>
+              <div class="p-subject"><img src="assets/coffee.png" alt="" width="360" height="279"></div>
+              <div class="p-caption">
+                <span><span class="p-word">el café</span></span>
+                <span class="p-trans">o café</span>
+                <span class="p-audio"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="#0F0E0C"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="han-peek" src="assets/han-happy.png" alt="Han, o mascote do Hanko — um carimbo vermelho sorridente" width="118" height="118">
+      <svg class="arrow-doodle" viewBox="0 0 80 70" aria-hidden="true"><path d="M6 8 C 36 4, 66 18, 64 52 M 50 42 L 64 54 L 72 38"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== MARQUEE ====================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>el café <span class="mq-trans">→ o café</span></span><span class="mq-sep">✦</span>
+    <span>おにぎり <span class="mq-trans">→ onigiri</span></span><span class="mq-sep">✦</span>
+    <span>你好 <span class="mq-trans">→ nǐ hǎo</span></span><span class="mq-sep">✦</span>
+    <span>the bread <span class="mq-trans">→ o pão</span></span><span class="mq-sep">✦</span>
+    <span>la calle <span class="mq-trans">→ a rua</span></span><span class="mq-sep">✦</span>
+    <span>ありがとう <span class="mq-trans">→ arigatō</span></span><span class="mq-sep">✦</span>
+    <span>¿cuánto cuesta? <span class="mq-trans">→ quanto custa?</span></span><span class="mq-sep">✦</span>
+    <span>el café <span class="mq-trans">→ o café</span></span><span class="mq-sep">✦</span>
+    <span>おにぎり <span class="mq-trans">→ onigiri</span></span><span class="mq-sep">✦</span>
+    <span>你好 <span class="mq-trans">→ nǐ hǎo</span></span><span class="mq-sep">✦</span>
+    <span>the bread <span class="mq-trans">→ o pão</span></span><span class="mq-sep">✦</span>
+    <span>la calle <span class="mq-trans">→ a rua</span></span><span class="mq-sep">✦</span>
+    <span>ありがとう <span class="mq-trans">→ arigatō</span></span><span class="mq-sep">✦</span>
+    <span>¿cuánto cuesta? <span class="mq-trans">→ quanto custa?</span></span><span class="mq-sep">✦</span>
+  </div>
+</div>
+
+<!-- ====================== COMO FUNCIONA ====================== -->
+<section class="section" id="como-funciona">
+  <div class="wrap">
+    <div style="text-align:center" class="reveal">
+      <span class="eyebrow">como funciona</span>
+      <h2 class="h-display">três passos e a palavra <span class="accent">é sua</span></h2>
+      <span class="sticker sticker--pistachio" style="transform:rotate(-2deg); margin-top:8px">📱 prints reais do app</span>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="phone"><div class="island" aria-hidden="true"></div><div class="screen">
+          <div class="cam-mock" role="img" aria-label="câmera do Hanko mirando uma xícara de café, com o botão vermelho SELAR">
+            <span class="cm-lang">ESPANHOL</span>
+            <span class="cm-brk cm-tl" aria-hidden="true"></span><span class="cm-brk cm-tr" aria-hidden="true"></span>
+            <span class="cm-brk cm-bl" aria-hidden="true"></span><span class="cm-brk cm-br" aria-hidden="true"></span>
+            <img src="assets/coffee.png" alt="" width="360" height="279" loading="lazy">
+            <span class="cm-shutter">SELAR</span>
+          </div>
+        </div></div>
+        <span class="step-num">1</span>
+        <h3>aponte e toque em <span class="mono-cap">SELAR</span></h3>
+        <p>qualquer objeto, prato ou placa — o shutter vermelho faz o resto.</p>
+      </div>
+      <div class="step reveal reveal-d1">
+        <div class="phone phone--img"><div class="island" aria-hidden="true"></div><div class="screen"><img src="assets/real-selo.png" alt="print real do Hanko: ketchup fotografado virou 番茄酱 com pinyin “fānqié jiàng”, botão ouvir e três frases reais em mandarim" loading="lazy" width="640" height="1391"></div></div>
+        <span class="step-num">2</span>
+        <h3>receba a palavra + 3 frases</h3>
+        <p>tradução, pronúncia com áudio nativo — e frases que você usaria de verdade.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="phone phone--img"><div class="island" aria-hidden="true"></div><div class="screen"><img src="assets/real-diario.png" alt="print real do Hanko: diário com polaroids dos selos capturados e a saudação “boa noite”" loading="lazy" width="640" height="1391"></div></div>
+        <span class="step-num">3</span>
+        <h3>colecione e revise</h3>
+        <p>cada captura vira um polaroid no seu diário e um pin no seu mapa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FRASES REAIS ====================== -->
+<section class="section section--pistachio">
+  <div class="wrap feat">
+    <div class="reveal">
+      <span class="eyebrow">frases de sobrevivência</span>
+      <h2 class="h-display">frases reais, <span class="accent">não dicionário</span></h2>
+      <p class="lead">decorar “cadeira” não pede um café. cada selo vem com <b>3 frases</b> pra pedir, perguntar o preço e se virar — com áudio e fonética.</p>
+      <div class="bubbles">
+        <div class="bubble bubble--lavender">
+          <span class="b-l"><span class="b-frase">¿cuánto cuesta?</span><span class="b-pt" style="display:block">quanto custa?</span></span>
+          <span class="b-play"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="#F6F1E4"/></svg></span>
+        </div>
+        <div class="bubble bubble--sky">
+          <span class="b-l"><span class="b-frase">un café, por favor.</span><span class="b-pt" style="display:block">um café, por favor.</span></span>
+          <span class="b-play"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="#F6F1E4"/></svg></span>
+        </div>
+        <div class="bubble bubble--rose">
+          <span class="b-l"><span class="b-frase">¿tienen pan fresco?</span><span class="b-pt" style="display:block">tem pão fresco?</span></span>
+          <span class="b-play"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0 L10 6 L0 12 Z" fill="#F6F1E4"/></svg></span>
+        </div>
+      </div>
+    </div>
+    <div class="feat-media reveal reveal-d1">
+      <div class="phone" style="transform:rotate(2deg); margin:0 auto">
+        <div class="island" aria-hidden="true"></div>
+        <div class="screen">
+          <div class="selo-screen" role="img" aria-label="tela do Hanko: a planta fotografada virou “la planta” com pronúncia e três frases de sobrevivência">
+            <span class="ss-top">‹ &nbsp;espanhol</span>
+            <div class="polaroid polaroid--sm" style="--pol-bg:var(--rose)">
+              <span class="p-date">30 mai</span>
+              <span class="p-place">📍 sp</span>
+              <div class="p-subject"><img src="assets/plant.png" alt="" width="320" height="419" loading="lazy"></div>
+              <div class="p-caption">
+                <span><span class="p-word">la planta</span></span>
+                <span class="p-trans">a planta</span>
+              </div>
+            </div>
+            <div class="ss-pron"><span class="ipa">/la ˈplan.ta/</span><span class="ouvir">▶ ouvir</span></div>
+            <span class="ss-label">3 frases reais</span>
+            <div class="ss-bubble bubble--lavender"><div class="f">¿cuánto cuesta?</div><div class="t">quanto custa?</div></div>
+            <div class="ss-bubble bubble--sky"><div class="f">¿necesita mucho sol?</div><div class="t">precisa de muito sol?</div></div>
+            <div class="ss-bubble bubble--rose"><div class="f">¿la riego cada día?</div><div class="t">rego todo dia?</div></div>
+          </div>
+        </div>
+      </div>
+      <span class="sticker" style="position:absolute; top:-10px; right:6%; transform:rotate(5deg)">útil!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== MAPA / PASSAPORTE ====================== -->
+<section class="section section--sky">
+  <div class="wrap feat feat--flip">
+    <div class="reveal">
+      <span class="eyebrow">memória espacial</span>
+      <h2 class="h-display">seu passaporte <span class="accent">de palavras</span></h2>
+      <p class="lead">cada selo vira um pin no lugar onde você aprendeu — o café de madrid, a estação de tóquio. seu vocabulário deixa de ser uma lista e vira um <b>mapa da sua vida</b>.</p>
+      <span class="claim-3x reveal reveal-d1">lembrar com memória espacial é <span class="accent">3× mais forte</span></span>
+    </div>
+    <div class="feat-media reveal reveal-d1">
+      <div class="phone phone--img" style="transform:rotate(-1.6deg); margin:0 auto">
+        <div class="island" aria-hidden="true"></div>
+        <div class="screen"><img src="assets/real-mapa.jpg" alt="print real do Hanko: mapa de São Paulo com os pins dos selos capturados — “seu passaporte, 3 selos · 1 cidade”" loading="lazy" width="640" height="1391"></div>
+      </div>
+      <span class="sticker sticker--citron" style="position:absolute; bottom:-14px; left:8%; transform:rotate(-4deg)">print real ✓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== REVISÃO SRS ====================== -->
+<section class="section section--citron">
+  <div class="wrap feat">
+    <div class="reveal">
+      <span class="eyebrow">revisão espaçada</span>
+      <h2 class="h-display">volta na hora certa, <span class="accent">gruda de vez</span></h2>
+      <p class="lead">a palavra volta sozinha pra te testar — <b>só quando você começa a esquecer</b>. estilo cartão postal virando: no metrô, na fila, na viagem.</p>
+      <div class="graders reveal reveal-d1" style="justify-content:flex-start">
+        <span class="grade grade--hard">😬 difícil</span>
+        <span class="grade grade--ok">🤔 ok</span>
+        <span class="grade grade--easy">🔥 fácil</span>
+      </div>
+    </div>
+    <div class="feat-media reveal reveal-d1">
+      <div class="flip-zone">
+        <div class="flipcard" id="flipcard" role="button" tabindex="0" aria-label="cartão de revisão: la calle. toque para ver a tradução">
+          <div class="flip-face flip-front">
+            <span class="flip-word">la calle</span>
+            <span class="flip-ipa">/la ˈka.ʝe/</span>
+            <span class="flip-hint">toque pra ver a tradução</span>
+          </div>
+          <div class="flip-face flip-back">
+            <span class="flip-word">a rua</span>
+            <span class="flip-frase">¿por dónde se va?<small>por onde se vai?</small></span>
+            <span class="flip-hint">acertou? marca 🔥</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== COLEÇÃO ====================== -->
+<section class="section section--coral">
+  <div class="wrap feat feat--flip">
+    <div class="reveal">
+      <span class="eyebrow">seu diário de palavras</span>
+      <h2 class="h-display">sua coleção <span class="accent">só cresce</span></h2>
+      <p class="lead">cada captura vira um selo com foto, data e lugar. a <b>mochila</b> guarda o que você já domina, o <b>streak</b> segura o hábito — e o seu passaporte dá vontade de mostrar.</p>
+      <div class="reveal reveal-d1" style="margin-top:26px">
+        <span class="sticker sticker--citron" style="transform:rotate(-2deg)">🔥 7 dias em chamas</span>
+      </div>
+    </div>
+    <div class="feat-media reveal reveal-d1">
+      <div class="wall">
+        <span class="sticker streak-chip">+1 selo!</span>
+        <div class="polaroid pol-a">
+          <span class="p-date">30 mai</span>
+          <span class="p-place">📍 madrid</span>
+          <div class="p-subject"><img src="assets/croissant.png" alt="croissant recortado" loading="lazy" width="420" height="262"></div>
+          <div class="p-caption">
+            <span><span class="p-word">el cruasán</span></span>
+            <span class="p-trans">o croissant</span>
+          </div>
+        </div>
+        <div class="polaroid pol-b">
+          <span class="p-date">02 jun</span>
+          <span class="p-place">📍 são paulo</span>
+          <div class="p-subject"><img src="assets/plant.png" alt="planta recortada" loading="lazy" width="320" height="419"></div>
+          <div class="p-caption">
+            <span><span class="p-word">la planta</span></span>
+            <span class="p-trans">a planta</span>
+          </div>
+        </div>
+        <div class="polaroid pol-c">
+          <span class="p-date">08 jun</span>
+          <span class="p-place">📍 cdmx</span>
+          <div class="p-subject"><img src="assets/flor.png" alt="flor gérbera vermelha recortada" loading="lazy" width="380" height="380"></div>
+          <div class="p-caption">
+            <span><span class="p-word">la flor</span></span>
+            <span class="p-trans">a flor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== IDIOMAS ====================== -->
+<section class="section">
+  <div class="wrap">
+    <div style="text-align:center" class="reveal">
+      <span class="eyebrow">4 idiomas no lançamento</span>
+      <h2 class="h-display">que idioma <span class="accent">vai colar?</span></h2>
+    </div>
+    <div class="langs">
+      <div class="lang-card lang-es reveal"><div class="greet">¡hola!</div><h3>espanhol</h3><p>áudio nativo</p></div>
+      <div class="lang-card lang-en reveal reveal-d1"><div class="greet">hi!</div><h3>inglês</h3><p>áudio nativo</p></div>
+      <div class="lang-card lang-ja reveal reveal-d2"><div class="greet">こんにちは</div><h3>japonês</h3><p>com romaji</p></div>
+      <div class="lang-card lang-zh reveal reveal-d3"><div class="greet">你好</div><h3>mandarim</h3><p>com pinyin</p></div>
+    </div>
+    <p class="lead langs-note reveal" style="margin-left:auto;margin-right:auto;text-align:center">no grátis você escolhe <b>1 idioma</b>. o premium libera os 4 ao mesmo tempo — pra quem coleciona destinos.</p>
+  </div>
+</section>
+
+<!-- ====================== PRIVACIDADE ====================== -->
+<section class="section section--ink">
+  <div class="wrap">
+    <div style="text-align:center" class="reveal">
+      <span class="eyebrow" style="background:var(--paper); color:var(--ink)">suas fotos</span>
+      <h2 class="h-display" style="color:var(--paper)">foto vira palavra. <span class="accent" style="color:var(--citron)">e só.</span></h2>
+    </div>
+    <div class="priv-grid">
+      <div class="priv-card reveal"><div class="pi">📷</div><h3>uso único</h3><p>a foto é usada só pra reconhecer o objeto e gerar a palavra — nada além disso.</p></div>
+      <div class="priv-card reveal reveal-d1"><div class="pi">📱</div><h3>seus selos, seu aparelho</h3><p>sua coleção fica salva no seu iPhone. sair da conta não apaga nada.</p></div>
+      <div class="priv-card reveal reveal-d2"><div class="pi">🚫</div><h3>sem rastreio</h3><p>sem anúncios, sem rastreamento entre apps, sem venda de dados. simples assim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PREÇO ====================== -->
+<section class="section" id="preco">
+  <div class="wrap">
+    <div style="text-align:center" class="reveal">
+      <span class="eyebrow">quanto custa</span>
+      <h2 class="h-display">o grátis é <span class="accent">grátis de verdade</span></h2>
+      <p class="lead" style="margin:0 auto">o loop inteiro de aprender — capturar, mapear e revisar — sem pagar nada.</p>
+    </div>
+
+    <div class="free-banner reveal">
+      <span class="fb-title">no plano grátis:</span>
+      <ul>
+        <li>3 capturas por dia</li>
+        <li>1 idioma</li>
+        <li>mapa completo</li>
+        <li>mochila ilimitada</li>
+        <li>revisão no tempo certo</li>
+      </ul>
+    </div>
+
+    <p class="label-mono reveal" style="text-align:center; margin-top:48px">quer mais? hanko premium ↓</p>
+
+    <div class="plans">
+      <div class="plan reveal">
+        <span class="p-name">mensal</span>
+        <span class="p-price">R$14,90<small>/mês</small></span>
+        <span class="p-note">pra experimentar no seu ritmo. cancele quando quiser.</span>
+      </div>
+      <div class="plan plan--featured reveal reveal-d1">
+        <span class="plan-badge">★ melhor</span>
+        <span class="p-name">anual</span>
+        <span class="p-price">R$119,90<small>/ano</small></span>
+        <span class="p-note"><b>7 dias grátis</b> pra começar · sai por ≈ R$10/mês.</span>
+      </div>
+      <div class="plan plan--life reveal reveal-d2">
+        <span class="p-name">vitalício</span>
+        <span class="p-price">R$249,90</span>
+        <span class="p-note">paga uma vez, é seu. pra sempre.</span>
+      </div>
+    </div>
+
+    <div class="perks reveal">
+      <span>📷 10× mais capturas</span>
+      <span>🌐 todos os idiomas</span>
+      <span>✈️ modo viagem completo</span>
+      <span>💖 apoia o coco studio</span>
+    </div>
+
+    <div class="pricing-cta reveal">
+      <a class="btn-store" href="https://apps.apple.com/br/app/hanko/id6774437058" data-goatcounter-click="cta-pricing" aria-label="Baixar o Hanko na App Store">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span class="lines"><span class="small">começar grátis na</span><span class="big">App Store</span></span>
+      </a>
+    </div>
+    <p class="pricing-fine reveal">7 dias grátis no plano anual · renova automaticamente · cancele quando quiser em ajustes</p>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section class="section section--alt" id="faq">
+  <div class="wrap">
+    <div style="text-align:center" class="reveal">
+      <span class="eyebrow">dúvidas</span>
+      <h2 class="h-display">perguntas <span class="accent">frequentes</span></h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>o que acontece com as minhas fotos?</summary>
+        <p>a foto é usada só pra reconhecer o objeto e gerar a palavra — nada além disso. seus selos ficam salvos no seu aparelho, e o app não tem anúncio nem rastreamento entre apps.</p>
+      </details>
+      <details>
+        <summary>o que eu ganho de graça?</summary>
+        <p>3 capturas por dia, 1 idioma — e o resto inteiro: mapa completo, mochila ilimitada e revisão no tempo certo. o loop diário de aprender e revisar é 100% grátis.</p>
+      </details>
+      <details>
+        <summary>quais idiomas o hanko ensina?</summary>
+        <p>espanhol, inglês, japonês e mandarim — pra quem fala português. a pronúncia se adapta à escrita: romaji no japonês, pinyin no mandarim. no grátis você escolhe 1; o premium libera os 4 ao mesmo tempo.</p>
+      </details>
+      <details>
+        <summary>funciona offline?</summary>
+        <p>pra capturar, precisa de internet — é assim que a foto vira palavra em 4 segundos. pra revisar, abrir o mapa e a mochila, não: seus selos moram no seu aparelho.</p>
+      </details>
+      <details>
+        <summary>o trial de 7 dias vale pra todos os planos?</summary>
+        <p>não — os 7 dias grátis são do plano anual. nos outros, a cobrança começa na hora, e dá pra cancelar em ajustes a qualquer momento.</p>
+      </details>
+      <details>
+        <summary>o que é o modo viagem?</summary>
+        <p>recurso premium: você escolhe destino e data (tóquio, madrid, shanghai, nova york e mais) e o han prioriza frases de sobrevivência pro lugar — com countdown tipo “43 dias pra tóquio” pra você chegar preparado.</p>
+      </details>
+      <details>
+        <summary>tem pra android?</summary>
+        <p>por enquanto o hanko é só pra iPhone. a versão google play tá em breve — segue o <a href="https://apps.apple.com/br/app/hanko/id6774437058">hanko na App Store</a> ou volta aqui pra saber quando sair.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CTA FINAL ====================== -->
+<section class="section section--red final">
+  <div class="wrap">
+    <img class="han-big reveal" src="assets/han-celebration.png" alt="Han, o mascote carimbo do Hanko, comemorando" width="148" height="148">
+    <h2 class="h-display reveal">bora selar sua <span class="accent">primeira palavra?</span></h2>
+    <p class="lead reveal reveal-d1">leva 2 minutos da câmera à primeira frase. e a primeira captura ninguém esquece.</p>
+    <div class="store-row reveal reveal-d2">
+      <a class="btn-store" href="https://apps.apple.com/br/app/hanko/id6774437058" data-goatcounter-click="cta-final" aria-label="Baixar o Hanko na App Store">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span class="lines"><span class="small">baixar na</span><span class="big">App Store</span></span>
+      </a>
+      <span class="btn-store btn-store--soon">
+        <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+        <span class="lines"><span class="small">em breve no</span><span class="big">Google Play</span></span>
+        <span class="soon-tag">em breve!</span>
+      </span>
+    </div>
+    <p class="cta-note reveal reveal-d3">grátis pra começar · sem cartão · iPhone (iOS 17.6+)</p>
+
+    <div class="qr-card reveal">
+      <img src="assets/qr-appstore.svg" alt="QR code para baixar o Hanko na App Store" width="128" height="128">
+      <span>tá no computador? aponta a câmera do iPhone aqui — já é treino pro app 📸</span>
+    </div>
+
+    <div class="founder reveal">
+      <img src="assets/han-idle.png" alt="" aria-hidden="true" width="64" height="64">
+      <div>
+        <p>o hanko é feito por uma pessoa só — desenhado, programado e publicado de são paulo. sem investidor, sem equipe de growth: cada assinatura banca os servidores e o craft. obrigado por estar aqui desde o dia 1 :)</p>
+        <p class="sig">josé · coco studio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <img src="assets/icon.png" alt="" aria-hidden="true" width="30" height="30">
+      <span>hanko</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://josediogor.github.io/hanko-legal/termos.html">termos de uso</a>
+      <a href="https://josediogor.github.io/hanko-legal/privacidade.html">privacidade</a>
+      <a href="mailto:josediogor@gmail.com">suporte</a>
+      <a href="https://apps.apple.com/br/app/hanko/id6774437058">app store</a>
+    </div>
+    <span class="foot-copy">© <span id="year">2026</span> coco studio · são paulo, brasil 🇧🇷</span>
+  </div>
+</footer>
+
+<!-- sticky CTA mobile -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="https://apps.apple.com/br/app/hanko/id6774437058" data-goatcounter-click="cta-sticky">📸 baixar o hanko grátis</a>
+</div>
+
+<script>
+// reveals
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{ threshold:.18, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// flashcard: clique + auto-flip
+const card = document.getElementById('flipcard');
+let autoFlip = setInterval(()=>card.classList.toggle('flipped'), 4200);
+function userFlip(){
+  card.classList.toggle('flipped');
+  clearInterval(autoFlip);
+  autoFlip = setInterval(()=>card.classList.toggle('flipped'), 5600);
+}
+card.addEventListener('click', userFlip);
+card.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); userFlip(); } });
+
+// sticky CTA (mobile) — aparece depois do hero
+const sticky = document.getElementById('stickyCta');
+const hero = document.querySelector('.hero');
+const heroIO = new IntersectionObserver(([e])=>{
+  sticky.classList.toggle('show', !e.isIntersecting);
+},{ threshold:0 });
+heroIO.observe(hero);
+
+// ano
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<!-- GoatCounter — analytics sem cookies (pageviews + cliques nos CTAs via data-goatcounter-click) -->
+<script data-goatcounter="https://hanko.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

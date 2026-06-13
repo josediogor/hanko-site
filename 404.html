@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hanko — página não encontrada</title>
+<style>
+  body{ font-family:'Space Grotesk',sans-serif; background:#F6F1E4; color:#0F0E0C; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; text-align:center; }
+  h1{ font-size:21px; }
+  a{ color:#E13C2C; }
+</style>
+<script>
+  // volta pra home (funciona no subpath do github.io e no domínio)
+  var base = location.hostname.endsWith('github.io') ? '/hanko-site/' : '/';
+  setTimeout(function(){ location.href = base; }, 1800);
+</script>
+</head>
+<body>
+  <h1>opa — essa página não existe.<br><a href="/">voltando pro hanko…</a></h1>
+</body>
+</html>
