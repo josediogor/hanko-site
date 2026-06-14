@@ -8,6 +8,38 @@
 <meta name="apple-itunes-app" content="app-id=6774437058">
 <meta name="theme-color" content="#F6F1E4">
 
+<!-- Google Analytics 4 · Coco Studio (Hanko) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQJTNBJ6C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJQJTNBJ6C');
+
+  // funil Coco Studio: visita -> scroll -> clique na App Store
+  (function(){
+    var APP='hanko';
+    document.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a[href*="apps.apple.com"]') : null;
+      if(!a) return;
+      var loc = a.getAttribute('data-goatcounter-click') || a.getAttribute('data-cta')
+              || (a.closest('section') && a.closest('section').id)
+              || (a.textContent||'').trim().slice(0,40) || 'sem-rotulo';
+      gtag('event','app_store_click',{app:APP, cta_location:loc, link_url:a.href});
+    }, true);
+    var marks=[25,50,75,90], hit={};
+    function onScroll(){
+      var d=document.documentElement, b=document.body||{};
+      var st=d.scrollTop||b.scrollTop||0;
+      var sh=(d.scrollHeight||b.scrollHeight||0)-d.clientHeight;
+      var p= sh>0 ? Math.round(st/sh*100) : 0;
+      for(var i=0;i<marks.length;i++){var m=marks[i]; if(p>=m && !hit[m]){hit[m]=1; gtag('event','scroll_depth',{app:APP, percent_scrolled:m});}}
+      if(hit[90]) window.removeEventListener('scroll', onScroll);
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+</script>
+
 <link rel="canonical" href="https://hankoapp.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hankoapp.com/">
@@ -31,9 +63,30 @@
   "name": "Hanko",
   "operatingSystem": "iOS",
   "applicationCategory": "EducationalApplication",
+  "inLanguage": "pt-BR",
   "description": "Aprenda espanhol, inglês, japonês e mandarim fotografando objetos. Cada foto vira uma palavra com pronúncia e 3 frases reais.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+  "author": { "@type": "Organization", "name": "Coco Studio", "url": "https://hankoapp.com/" },
+  "publisher": { "@type": "Organization", "name": "Coco Studio" },
+  "screenshot": "https://hankoapp.com/assets/real-selo.png",
+  "downloadUrl": "https://apps.apple.com/br/app/hanko/id6774437058",
   "url": "https://apps.apple.com/br/app/hanko/id6774437058"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "O que acontece com as minhas fotos?", "acceptedAnswer": { "@type": "Answer", "text": "A foto é usada só pra reconhecer o objeto e gerar a palavra — nada além disso. Seus selos ficam salvos no seu aparelho, e o app não tem anúncio nem rastreamento entre apps." } },
+    { "@type": "Question", "name": "O que eu ganho de graça?", "acceptedAnswer": { "@type": "Answer", "text": "3 capturas por dia e 1 idioma — e o resto inteiro: mapa completo, mochila ilimitada e revisão no tempo certo. O loop diário de aprender e revisar é 100% grátis." } },
+    { "@type": "Question", "name": "Quais idiomas o Hanko ensina?", "acceptedAnswer": { "@type": "Answer", "text": "Espanhol, inglês, japonês e mandarim — pra quem fala português. A pronúncia se adapta à escrita: romaji no japonês, pinyin no mandarim. No grátis você escolhe 1; o premium libera os 4 ao mesmo tempo." } },
+    { "@type": "Question", "name": "Funciona offline?", "acceptedAnswer": { "@type": "Answer", "text": "Pra capturar, precisa de internet — é assim que a foto vira palavra em 4 segundos. Pra revisar, abrir o mapa e a mochila, não: seus selos moram no seu aparelho." } },
+    { "@type": "Question", "name": "O trial de 7 dias vale pra todos os planos?", "acceptedAnswer": { "@type": "Answer", "text": "Não — os 7 dias grátis são do plano anual. Nos outros, a cobrança começa na hora, e dá pra cancelar em ajustes a qualquer momento." } },
+    { "@type": "Question", "name": "O que é o modo viagem?", "acceptedAnswer": { "@type": "Answer", "text": "Recurso premium: você escolhe destino e data e o Han prioriza frases de sobrevivência pro lugar, com contagem regressiva pra você chegar preparado." } },
+    { "@type": "Question", "name": "Tem pra Android?", "acceptedAnswer": { "@type": "Answer", "text": "Por enquanto o Hanko é só pra iPhone. A versão Google Play está em breve." } }
+  ]
 }
 </script>
 
